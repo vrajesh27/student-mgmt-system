@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Student Management Services
  *
  * The student management service(s) for reading student information and managing the grades. 
@@ -25,41 +25,31 @@ namespace IO.Swagger.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class Weight : IEquatable<Weight>
+    public partial class StudentSummary : IEquatable<StudentSummary>
     {
         /// <summary>
-        /// The weight of the student. 
+        /// The unique identifier of a student. This field will never be blank. 
         /// </summary>
-        /// <value>The weight of the student. </value>
+        /// <value>The unique identifier of a student. This field will never be blank. </value>
         [Required]
-        [DataMember(Name = "value")]
-        public float? Value { get; set; }
-        /// <summary>
-        /// The unit of weight measurement. 
-        /// </summary>
-        /// <value>The unit of weight measurement. </value>
-        public enum UnitEnum
-        {
-            /// <summary>
-            /// Enum KgEnum for kg
-            /// </summary>
-            [EnumMember(Value = "kg")]
-            KgEnum = 1,
-
-            /// <summary>
-            /// Enum PoundsEnum for pounds
-            /// </summary>
-            [EnumMember(Value = "pounds")]
-            PoundsEnum = 2
-        }
+        [DataMember(Name = "id")]
+        public string Id { get; set; }
 
         /// <summary>
-        /// The unit of weight measurement. 
+        /// The name of the student. This field will never be blank. 
         /// </summary>
-        /// <value>The unit of weight measurement. </value>
+        /// <value>The name of the student. This field will never be blank. </value>
         [Required]
-        [DataMember(Name = "unit")]
-        public UnitEnum? Unit { get; set; }
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The name of the grade. 
+        /// </summary>
+        /// <value>The name of the grade. </value>
+        [Required]
+        [DataMember(Name = "grade")]
+        public string Grade { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -68,9 +58,10 @@ namespace IO.Swagger.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Weight {\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
-            sb.Append("  Unit: ").Append(Unit).Append("\n");
+            sb.Append("class StudentSummary {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Grade: ").Append(Grade).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,29 +84,34 @@ namespace IO.Swagger.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Weight)obj);
+            return obj.GetType() == GetType() && Equals((StudentSummary)obj);
         }
 
         /// <summary>
-        /// Returns true if Weight instances are equal
+        /// Returns true if StudentSummary instances are equal
         /// </summary>
-        /// <param name="other">Instance of Weight to be compared</param>
+        /// <param name="other">Instance of StudentSummary to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Weight other)
+        public bool Equals(StudentSummary other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
             return
                 (
-                    Value == other.Value ||
-                    Value != null &&
-                    Value.Equals(other.Value)
+                    Id == other.Id ||
+                    Id != null &&
+                    Id.Equals(other.Id)
                 ) &&
                 (
-                    Unit == other.Unit ||
-                    Unit != null &&
-                    Unit.Equals(other.Unit)
+                    Name == other.Name ||
+                    Name != null &&
+                    Name.Equals(other.Name)
+                ) &&
+                (
+                    Grade == other.Grade ||
+                    Grade != null &&
+                    Grade.Equals(other.Grade)
                 );
         }
 
@@ -129,10 +125,12 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                if (Value != null)
-                    hashCode = hashCode * 59 + Value.GetHashCode();
-                if (Unit != null)
-                    hashCode = hashCode * 59 + Unit.GetHashCode();
+                if (Id != null)
+                    hashCode = hashCode * 59 + Id.GetHashCode();
+                if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
+                if (Grade != null)
+                    hashCode = hashCode * 59 + Grade.GetHashCode();
                 return hashCode;
             }
         }
@@ -140,12 +138,12 @@ namespace IO.Swagger.Models
         #region Operators
 #pragma warning disable 1591
 
-        public static bool operator ==(Weight left, Weight right)
+        public static bool operator ==(StudentSummary left, StudentSummary right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(Weight left, Weight right)
+        public static bool operator !=(StudentSummary left, StudentSummary right)
         {
             return !Equals(left, right);
         }

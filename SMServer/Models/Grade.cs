@@ -20,19 +20,19 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace IO.Swagger.Models
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
     [DataContract]
     public partial class Grade : IEquatable<Grade>
-    { 
+    {
         /// <summary>
         /// The unique identifier of a given grade. This field will never be blank. 
         /// </summary>
         /// <value>The unique identifier of a given grade. This field will never be blank. </value>
         [Required]
-        [DataMember(Name="id")]
+        [DataMember(Name = "id")]
         public string Id { get; set; }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace IO.Swagger.Models
         /// </summary>
         /// <value>The name of the grade. </value>
         [Required]
-        [DataMember(Name="name")]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace IO.Swagger.Models
         /// </summary>
         /// <value>The section of a given grade. </value>
         [Required]
-        [DataMember(Name="section")]
+        [DataMember(Name = "section")]
         public string Section { get; set; }
 
         /// <summary>
@@ -97,17 +97,17 @@ namespace IO.Swagger.Models
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return 
+            return
                 (
                     Id == other.Id ||
                     Id != null &&
                     Id.Equals(other.Id)
-                ) && 
+                ) &&
                 (
                     Name == other.Name ||
                     Name != null &&
                     Name.Equals(other.Name)
-                ) && 
+                ) &&
                 (
                     Section == other.Section ||
                     Section != null &&
@@ -125,18 +125,18 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Id != null)
+                if (Id != null)
                     hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (Name != null)
+                if (Name != null)
                     hashCode = hashCode * 59 + Name.GetHashCode();
-                    if (Section != null)
+                if (Section != null)
                     hashCode = hashCode * 59 + Section.GetHashCode();
                 return hashCode;
             }
         }
 
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(Grade left, Grade right)
         {
@@ -148,7 +148,7 @@ namespace IO.Swagger.Models
             return !Equals(left, right);
         }
 
-        #pragma warning restore 1591
+#pragma warning restore 1591
         #endregion Operators
     }
 }

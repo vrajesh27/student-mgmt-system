@@ -25,7 +25,7 @@ using IO.Swagger.Models;
 using Data.Models;
 
 namespace IO.Swagger.Controllers
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
@@ -52,10 +52,41 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("GetStudentDetailsById")]
         [SwaggerResponse(statusCode: 200, type: typeof(Student), description: "Success.")]
         public virtual IActionResult GetStudentDetailsById([FromRoute][Required]string id, [FromHeader]string correlationID)
-        { 
+        {
             StudentDataModel currentStudentDataModel = _context.Students.FirstOrDefault(student => student.ID.ToString() == id);
 
             return (currentStudentDataModel != null) ? (new ObjectResult(SMTranslator.TranslateStudent(currentStudentDataModel))) : new ObjectResult(StatusCode(404));
+        }
+
+        /// <summary>
+        /// Service for searching students.
+        /// </summary>
+        /// <remarks>Search students.</remarks>
+        /// <param name="correlationID">A string identifier used for troubleshooting. * If not provided, it will be generated. </param>
+        /// <param name="grade">The filter for grade name. </param>
+        /// <param name="section">The filter for grade section. </param>
+        /// <response code="200">Success.</response>
+        /// <response code="500">Internal Service Error.  An unexpected error occurred.</response>
+        [HttpGet]
+        [Route("/student-mgmt-services/service/students/student-summaries")]
+        [SwaggerOperation("GetStudentSummaries")]
+        [SwaggerResponse(statusCode: 200, type: typeof(StudentSummaries), description: "Success.")]
+        public virtual IActionResult GetStudentSummaries([FromHeader]string correlationID, [FromQuery]string grade, [FromQuery]string section)
+        {
+            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(200, default(StudentSummaries));
+
+            //TODO: Uncomment the next line to return response 500 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(500);
+
+            string exampleJson = null;
+            exampleJson = "{\n  \"students\" : [ {\n    \"grade\" : \"First\",\n    \"name\" : \"Rajesh\",\n    \"id\" : \"135\"\n  }, {\n    \"grade\" : \"First\",\n    \"name\" : \"Rajesh\",\n    \"id\" : \"135\"\n  } ]\n}";
+
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<StudentSummaries>(exampleJson)
+            : default(StudentSummaries);
+            //TODO: Change the data returned
+            return new ObjectResult(example);
         }
     }
 }

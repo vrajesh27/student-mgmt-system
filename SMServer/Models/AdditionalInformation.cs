@@ -20,25 +20,25 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace IO.Swagger.Models
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
     [DataContract]
     public partial class AdditionalInformation : IEquatable<AdditionalInformation>
-    { 
+    {
         /// <summary>
         /// Gets or Sets Height
         /// </summary>
         [Required]
-        [DataMember(Name="height")]
+        [DataMember(Name = "height")]
         public Height Height { get; set; }
 
         /// <summary>
         /// Gets or Sets Weight
         /// </summary>
         [Required]
-        [DataMember(Name="weight")]
+        [DataMember(Name = "weight")]
         public Weight Weight { get; set; }
 
         /// <summary>
@@ -86,12 +86,12 @@ namespace IO.Swagger.Models
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return 
+            return
                 (
                     Height == other.Height ||
                     Height != null &&
                     Height.Equals(other.Height)
-                ) && 
+                ) &&
                 (
                     Weight == other.Weight ||
                     Weight != null &&
@@ -109,16 +109,16 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Height != null)
+                if (Height != null)
                     hashCode = hashCode * 59 + Height.GetHashCode();
-                    if (Weight != null)
+                if (Weight != null)
                     hashCode = hashCode * 59 + Weight.GetHashCode();
                 return hashCode;
             }
         }
 
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(AdditionalInformation left, AdditionalInformation right)
         {
@@ -130,7 +130,7 @@ namespace IO.Swagger.Models
             return !Equals(left, right);
         }
 
-        #pragma warning restore 1591
+#pragma warning restore 1591
         #endregion Operators
     }
 }

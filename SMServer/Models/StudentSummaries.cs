@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Student Management Services
  *
  * The student management service(s) for reading student information and managing the grades. 
@@ -25,41 +25,14 @@ namespace IO.Swagger.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class Weight : IEquatable<Weight>
+    public partial class StudentSummaries : IEquatable<StudentSummaries>
     {
         /// <summary>
-        /// The weight of the student. 
+        /// Gets or Sets Students
         /// </summary>
-        /// <value>The weight of the student. </value>
         [Required]
-        [DataMember(Name = "value")]
-        public float? Value { get; set; }
-        /// <summary>
-        /// The unit of weight measurement. 
-        /// </summary>
-        /// <value>The unit of weight measurement. </value>
-        public enum UnitEnum
-        {
-            /// <summary>
-            /// Enum KgEnum for kg
-            /// </summary>
-            [EnumMember(Value = "kg")]
-            KgEnum = 1,
-
-            /// <summary>
-            /// Enum PoundsEnum for pounds
-            /// </summary>
-            [EnumMember(Value = "pounds")]
-            PoundsEnum = 2
-        }
-
-        /// <summary>
-        /// The unit of weight measurement. 
-        /// </summary>
-        /// <value>The unit of weight measurement. </value>
-        [Required]
-        [DataMember(Name = "unit")]
-        public UnitEnum? Unit { get; set; }
+        [DataMember(Name = "students")]
+        public List<StudentSummary> Students { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -68,9 +41,8 @@ namespace IO.Swagger.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Weight {\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
-            sb.Append("  Unit: ").Append(Unit).Append("\n");
+            sb.Append("class StudentSummaries {\n");
+            sb.Append("  Students: ").Append(Students).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,29 +65,24 @@ namespace IO.Swagger.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Weight)obj);
+            return obj.GetType() == GetType() && Equals((StudentSummaries)obj);
         }
 
         /// <summary>
-        /// Returns true if Weight instances are equal
+        /// Returns true if StudentSummaries instances are equal
         /// </summary>
-        /// <param name="other">Instance of Weight to be compared</param>
+        /// <param name="other">Instance of StudentSummaries to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Weight other)
+        public bool Equals(StudentSummaries other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
             return
                 (
-                    Value == other.Value ||
-                    Value != null &&
-                    Value.Equals(other.Value)
-                ) &&
-                (
-                    Unit == other.Unit ||
-                    Unit != null &&
-                    Unit.Equals(other.Unit)
+                    Students == other.Students ||
+                    Students != null &&
+                    Students.SequenceEqual(other.Students)
                 );
         }
 
@@ -129,10 +96,8 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                if (Value != null)
-                    hashCode = hashCode * 59 + Value.GetHashCode();
-                if (Unit != null)
-                    hashCode = hashCode * 59 + Unit.GetHashCode();
+                if (Students != null)
+                    hashCode = hashCode * 59 + Students.GetHashCode();
                 return hashCode;
             }
         }
@@ -140,12 +105,12 @@ namespace IO.Swagger.Models
         #region Operators
 #pragma warning disable 1591
 
-        public static bool operator ==(Weight left, Weight right)
+        public static bool operator ==(StudentSummaries left, StudentSummaries right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(Weight left, Weight right)
+        public static bool operator !=(StudentSummaries left, StudentSummaries right)
         {
             return !Equals(left, right);
         }

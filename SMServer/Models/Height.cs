@@ -20,38 +20,38 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace IO.Swagger.Models
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
     [DataContract]
     public partial class Height : IEquatable<Height>
-    { 
+    {
         /// <summary>
         /// The height of the student. 
         /// </summary>
         /// <value>The height of the student. </value>
         [Required]
-        [DataMember(Name="value")]
+        [DataMember(Name = "value")]
         public float? Value { get; set; }
         /// <summary>
         /// The unit of height measurement. 
         /// </summary>
         /// <value>The unit of height measurement. </value>
         public enum UnitEnum
-        { 
+        {
             /// <summary>
             /// Enum CentimetersEnum for centimeters
             /// </summary>
             [EnumMember(Value = "centimeters")]
             CentimetersEnum = 1,
-            
+
             /// <summary>
             /// Enum FtEnum for ft
             /// </summary>
             [EnumMember(Value = "ft")]
             FtEnum = 2,
-            
+
             /// <summary>
             /// Enum InchesEnum for inches
             /// </summary>
@@ -64,7 +64,7 @@ namespace IO.Swagger.Models
         /// </summary>
         /// <value>The unit of height measurement. </value>
         [Required]
-        [DataMember(Name="unit")]
+        [DataMember(Name = "unit")]
         public UnitEnum? Unit { get; set; }
 
         /// <summary>
@@ -112,12 +112,12 @@ namespace IO.Swagger.Models
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return 
+            return
                 (
                     Value == other.Value ||
                     Value != null &&
                     Value.Equals(other.Value)
-                ) && 
+                ) &&
                 (
                     Unit == other.Unit ||
                     Unit != null &&
@@ -135,16 +135,16 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Value != null)
+                if (Value != null)
                     hashCode = hashCode * 59 + Value.GetHashCode();
-                    if (Unit != null)
+                if (Unit != null)
                     hashCode = hashCode * 59 + Unit.GetHashCode();
                 return hashCode;
             }
         }
 
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(Height left, Height right)
         {
@@ -156,7 +156,7 @@ namespace IO.Swagger.Models
             return !Equals(left, right);
         }
 
-        #pragma warning restore 1591
+#pragma warning restore 1591
         #endregion Operators
     }
 }

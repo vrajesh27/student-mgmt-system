@@ -20,19 +20,19 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace IO.Swagger.Models
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
     [DataContract]
     public partial class Student : IEquatable<Student>
-    { 
+    {
         /// <summary>
         /// The unique identifier of a student. This field will never be blank. 
         /// </summary>
         /// <value>The unique identifier of a student. This field will never be blank. </value>
         [Required]
-        [DataMember(Name="id")]
+        [DataMember(Name = "id")]
         public string Id { get; set; }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace IO.Swagger.Models
         /// </summary>
         /// <value>The name of the student. This field will never be blank. </value>
         [Required]
-        [DataMember(Name="name")]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -48,20 +48,20 @@ namespace IO.Swagger.Models
         /// </summary>
         /// <value>The date of birth of the student. This field will never be blank. </value>
         [Required]
-        [DataMember(Name="dob")]
+        [DataMember(Name = "dob")]
         public string Dob { get; set; }
 
         /// <summary>
         /// Gets or Sets Grade
         /// </summary>
         [Required]
-        [DataMember(Name="grade")]
+        [DataMember(Name = "grade")]
         public Grade Grade { get; set; }
 
         /// <summary>
         /// Gets or Sets AdditionalInformation
         /// </summary>
-        [DataMember(Name="additionalInformation")]
+        [DataMember(Name = "additionalInformation")]
         public AdditionalInformation AdditionalInformation { get; set; }
 
         /// <summary>
@@ -112,27 +112,27 @@ namespace IO.Swagger.Models
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return 
+            return
                 (
                     Id == other.Id ||
                     Id != null &&
                     Id.Equals(other.Id)
-                ) && 
+                ) &&
                 (
                     Name == other.Name ||
                     Name != null &&
                     Name.Equals(other.Name)
-                ) && 
+                ) &&
                 (
                     Dob == other.Dob ||
                     Dob != null &&
                     Dob.Equals(other.Dob)
-                ) && 
+                ) &&
                 (
                     Grade == other.Grade ||
                     Grade != null &&
                     Grade.Equals(other.Grade)
-                ) && 
+                ) &&
                 (
                     AdditionalInformation == other.AdditionalInformation ||
                     AdditionalInformation != null &&
@@ -150,22 +150,22 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Id != null)
+                if (Id != null)
                     hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (Name != null)
+                if (Name != null)
                     hashCode = hashCode * 59 + Name.GetHashCode();
-                    if (Dob != null)
+                if (Dob != null)
                     hashCode = hashCode * 59 + Dob.GetHashCode();
-                    if (Grade != null)
+                if (Grade != null)
                     hashCode = hashCode * 59 + Grade.GetHashCode();
-                    if (AdditionalInformation != null)
+                if (AdditionalInformation != null)
                     hashCode = hashCode * 59 + AdditionalInformation.GetHashCode();
                 return hashCode;
             }
         }
 
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(Student left, Student right)
         {
@@ -177,7 +177,7 @@ namespace IO.Swagger.Models
             return !Equals(left, right);
         }
 
-        #pragma warning restore 1591
+#pragma warning restore 1591
         #endregion Operators
     }
 }
