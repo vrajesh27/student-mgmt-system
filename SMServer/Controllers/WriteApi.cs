@@ -22,6 +22,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using IO.Swagger.Models;
+using Data.Models;
 
 namespace IO.Swagger.Controllers
 { 
@@ -30,6 +31,13 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class WriteApiController : Controller
     { 
+        private readonly SMContext.SMDBContext _context;
+
+        public WriteApiController(SMContext.SMDBContext context)
+        {
+            _context = context;
+        }
+
         /// <summary>
         /// Service for adding or Updating student details.
         /// </summary>
@@ -42,15 +50,12 @@ namespace IO.Swagger.Controllers
         [Route("/student-mgmt-services/service/students")]
         [SwaggerOperation("AddOrUpdateStudentDetails")]
         public virtual IActionResult AddOrUpdateStudentDetails([FromBody]Student body, [FromHeader]string correlationID)
-        { 
-            //TODO: Uncomment the next line to return response 201 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(201);
-
-            //TODO: Uncomment the next line to return response 500 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(500);
-
-
-            throw new NotImplementedException();
+        {
+            StudentDataModel dataModel = new StudentDataModel(body);
+            _context.Students.Add(dataModel);
+            _context.Grades.Add(dataModel.GradeDM);
+            _context.SaveChanges();
+            return StatusCode(201);
         }
     }
 }

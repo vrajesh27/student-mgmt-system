@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using IO.Swagger.Models;
+using SMContext;
 
 namespace SMServer
 {
@@ -31,6 +34,10 @@ namespace SMServer
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<SMDBContext>(dbContext => 
+            {
+                dbContext.UseInMemoryDatabase("StudentManagementSystem");
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

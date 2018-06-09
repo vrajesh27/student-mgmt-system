@@ -6,7 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Data\Context\" />
+    <Folder Include="Data\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\GradeDataModel.cs" />
+    <Compile Remove="Data\GradeDataModel.cs" />
+  </ItemGroup>
 </Project>

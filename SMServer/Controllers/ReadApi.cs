@@ -22,6 +22,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using IO.Swagger.Models;
+using Data.Models;
 
 namespace IO.Swagger.Controllers
 { 
@@ -29,7 +30,14 @@ namespace IO.Swagger.Controllers
     /// 
     /// </summary>
     public class ReadApiController : Controller
-    { 
+    {
+        private readonly SMContext.SMDBContext _context;
+
+        public ReadApiController(SMContext.SMDBContext context)
+        {
+            _context = context;
+        }
+
         /// <summary>
         /// Service for retrieving student details associated to a student id.
         /// </summary>
@@ -45,24 +53,9 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 200, type: typeof(Student), description: "Success.")]
         public virtual IActionResult GetStudentDetailsById([FromRoute][Required]string id, [FromHeader]string correlationID)
         { 
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(Student));
+            StudentDataModel currentStudentDataModel = _context.Students.FirstOrDefault(student => student.ID.ToString() == id);
 
-            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(404);
-
-            //TODO: Uncomment the next line to return response 500 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(500);
-
-            string exampleJson = null;()
-            ;
-            exampleJson = "{\n  \"additionalInformation\" : {\n    \"weight\" : {\n      \"unit\" : \"kg\",\n      \"value\" : 65.0\n    },\n    \"height\" : {\n      \"unit\" : \"ft\",\n      \"value\" : 5.7\n    }\n  },\n  \"dob\" : \"27/04/1900\",\n  \"grade\" : {\n    \"name\" : \"First\",\n    \"section\" : \"A\",\n    \"id\" : \"1\"\n  },\n  \"name\" : \"Rajesh\",\n  \"id\" : \"135\"\n}";
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<Student>(exampleJson)
-            : default(Student);
-            //TODO: Change the data returned
-            return new ObjectResult(example);
+            return (currentStudentDataModel != null) ? (new ObjectResult(SMTranslator.TranslateStudent(currentStudentDataModel))) : new ObjectResult(StatusCode(404));
         }
     }
 }
