@@ -46,6 +46,35 @@ paths:
         '500':
           description: Internal Service Error.  An unexpected error occurred.
 
+  /students:
+    post:
+      tags:
+        - write
+      summary: Service for adding or Updating student details.
+      description: Add or Update student details.
+      operationId: addOrUpdateStudentDetails
+      produces:
+        - application/json
+      parameters:
+        - name: Correlation-ID
+          in: header
+          type: string
+          required: false
+          description: |
+            A string identifier used for troubleshooting.
+            * If not provided, it will be generated.
+        - name: body
+          in: body
+          required: true
+          description: |
+            The student object that needs to be added or updated.
+          schema:
+            $ref: '#/definitions/Student'
+      responses:
+        '201':
+          description: Success.
+        '500':
+          description: Internal Service Error.  An unexpected error occurred.
 definitions:
   Student:
     type: object
@@ -59,26 +88,21 @@ definitions:
         type: string
         description: |
           The unique identifier of a student. This field will never be blank.
+        example: 135
       name:
         type: string
         description: |
           The name of the student. This field will never be blank.
+        example: Rajesh
       dob:
         type: string
         description: |
           The date of birth of the student. This field will never be blank.
-      height:
-        type: number
-        format: float
-        description: |
-          The height of the student.
-      weight:
-        type: number
-        format: float
-        description: |
-           The height of the student.
+        example: 27/04/1900
       grade: 
           $ref: '#/definitions/Grade'
+      additionalInformation:
+        $ref: '#/definitions/AdditionalInformation'
 
   Grade:
     type: object
@@ -102,3 +126,57 @@ definitions:
         description: |
           The section of a given grade.
         example: A
+  
+  AdditionalInformation:
+    type: object
+    required:
+      - height
+      - weight
+    properties:
+      height:
+        $ref: '#/definitions/Height'
+      weight:
+        $ref: '#/definitions/Weight'
+  
+  Height:
+    type: object
+    required:
+      - value
+      - unit
+    properties:
+      value:
+        type: number
+        format: float
+        description: |
+          The height of the student.
+        example: 5.7
+      unit:
+        type: string
+        enum:
+          - centimeters
+          - ft
+          - inches
+        description: |
+          The unit of height measurement.
+        example: ft
+  
+  Weight:
+    type: object
+    required:
+      - value
+      - unit
+    properties:
+      value:
+        type: number
+        format: float
+        description: |
+          The weight of the student.
+        example: 65
+      unit:
+        type: string
+        enum:
+          - kg
+          - pounds
+        description: |
+          The unit of weight measurement.
+        example: kg

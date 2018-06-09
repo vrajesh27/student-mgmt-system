@@ -54,8 +54,9 @@ namespace IO.Swagger.Controllers
             //TODO: Uncomment the next line to return response 500 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(500);
 
-            string exampleJson = null;
-            exampleJson = "{\n  \"dob\" : \"dob\",\n  \"grade\" : {\n    \"name\" : \"First\",\n    \"section\" : \"A\",\n    \"id\" : \"1\"\n  },\n  \"name\" : \"name\",\n  \"weight\" : 6.0274563,\n  \"id\" : \"id\",\n  \"height\" : 0.8008282\n}";
+            string exampleJson = null;()
+            ;
+            exampleJson = "{\n  \"additionalInformation\" : {\n    \"weight\" : {\n      \"unit\" : \"kg\",\n      \"value\" : 65.0\n    },\n    \"height\" : {\n      \"unit\" : \"ft\",\n      \"value\" : 5.7\n    }\n  },\n  \"dob\" : \"27/04/1900\",\n  \"grade\" : {\n    \"name\" : \"First\",\n    \"section\" : \"A\",\n    \"id\" : \"1\"\n  },\n  \"name\" : \"Rajesh\",\n  \"id\" : \"135\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Student>(exampleJson)

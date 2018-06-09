@@ -52,25 +52,17 @@ namespace IO.Swagger.Models
         public string Dob { get; set; }
 
         /// <summary>
-        /// The height of the student. 
-        /// </summary>
-        /// <value>The height of the student. </value>
-        [DataMember(Name="height")]
-        public float? Height { get; set; }
-
-        /// <summary>
-        /// The height of the student. 
-        /// </summary>
-        /// <value>The height of the student. </value>
-        [DataMember(Name="weight")]
-        public float? Weight { get; set; }
-
-        /// <summary>
         /// Gets or Sets Grade
         /// </summary>
         [Required]
         [DataMember(Name="grade")]
         public Grade Grade { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AdditionalInformation
+        /// </summary>
+        [DataMember(Name="additionalInformation")]
+        public AdditionalInformation AdditionalInformation { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,9 +75,8 @@ namespace IO.Swagger.Models
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Dob: ").Append(Dob).Append("\n");
-            sb.Append("  Height: ").Append(Height).Append("\n");
-            sb.Append("  Weight: ").Append(Weight).Append("\n");
             sb.Append("  Grade: ").Append(Grade).Append("\n");
+            sb.Append("  AdditionalInformation: ").Append(AdditionalInformation).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -138,19 +129,14 @@ namespace IO.Swagger.Models
                     Dob.Equals(other.Dob)
                 ) && 
                 (
-                    Height == other.Height ||
-                    Height != null &&
-                    Height.Equals(other.Height)
-                ) && 
-                (
-                    Weight == other.Weight ||
-                    Weight != null &&
-                    Weight.Equals(other.Weight)
-                ) && 
-                (
                     Grade == other.Grade ||
                     Grade != null &&
                     Grade.Equals(other.Grade)
+                ) && 
+                (
+                    AdditionalInformation == other.AdditionalInformation ||
+                    AdditionalInformation != null &&
+                    AdditionalInformation.Equals(other.AdditionalInformation)
                 );
         }
 
@@ -170,12 +156,10 @@ namespace IO.Swagger.Models
                     hashCode = hashCode * 59 + Name.GetHashCode();
                     if (Dob != null)
                     hashCode = hashCode * 59 + Dob.GetHashCode();
-                    if (Height != null)
-                    hashCode = hashCode * 59 + Height.GetHashCode();
-                    if (Weight != null)
-                    hashCode = hashCode * 59 + Weight.GetHashCode();
                     if (Grade != null)
                     hashCode = hashCode * 59 + Grade.GetHashCode();
+                    if (AdditionalInformation != null)
+                    hashCode = hashCode * 59 + AdditionalInformation.GetHashCode();
                 return hashCode;
             }
         }
