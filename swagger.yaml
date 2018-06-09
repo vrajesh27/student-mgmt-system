@@ -1,0 +1,104 @@
+---
+swagger: '2.0'
+info:
+  description: |
+    The student management service(s) for reading student information and
+    managing the grades.
+  version: 1.0.0-SNAPSHOT
+  title: Student Management Services
+  contact:
+    name: Rajesh Venkatesan
+    email: vrajesh.27@gmail.com
+basePath: '/student-mgmt-services/service'
+schemes:
+  - http
+paths:
+  /students/{id}:
+    get:
+      tags:
+        - read
+      summary: Service for retrieving student details associated to a student id.
+      description: Retrieves student details associated to a student id.
+      operationId: getStudentDetailsById
+      produces:
+        - application/json
+      parameters:
+        - name: Correlation-ID
+          in: header
+          type: string
+          required: false
+          description: |
+            A string identifier used for troubleshooting.
+            * If not provided, it will be generated.
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: |
+            The unique identifier of a student.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Student'
+        '404':
+          description: Not Found. The requested student identifer is not found.
+        '500':
+          description: Internal Service Error.  An unexpected error occurred.
+
+definitions:
+  Student:
+    type: object
+    required:
+      - id
+      - name
+      - dob
+      - grade
+    properties:
+      id:
+        type: string
+        description: |
+          The unique identifier of a student. This field will never be blank.
+      name:
+        type: string
+        description: |
+          The name of the student. This field will never be blank.
+      dob:
+        type: string
+        description: |
+          The date of birth of the student. This field will never be blank.
+      height:
+        type: number
+        format: float
+        description: |
+          The height of the student.
+      weight:
+        type: number
+        format: float
+        description: |
+           The height of the student.
+      grade: 
+          $ref: '#/definitions/Grade'
+
+  Grade:
+    type: object
+    required:
+      - id
+      - name
+      - section
+    properties:
+      id:
+        type: string
+        description: |
+          The unique identifier of a given grade. This field will never be blank.
+        example: 1
+      name:
+        type: string
+        description: |
+          The name of the grade.
+        example: First
+      section:
+        type: string
+        description: |
+          The section of a given grade.
+        example: A
